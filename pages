@@ -1,0 +1,254 @@
+
+//Register
+import React, { useState } from "react";
+import Layout from "./../../components/layout/layout.js";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import "../../styles/AuthStyles.css";
+const Register = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const navigate = useNavigate();
+
+  // form function
+  async function handleSubmit(e) {
+        e.preventDefault();
+        try {
+            const res = await axios.post("/api/v1/auth/register", {
+                name,
+                email,
+                password,
+                phone,
+                address,
+            });
+            if (res && res.data.success) {
+                toast.success(res.data && res.data.message);
+                navigate("/login");
+            } else {
+                toast.error(res.data.message);
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error("Something went wrong");
+        }
+    }
+
+  return (
+    <Layout title="Register - Ecommer App">
+      <div className="form-container ">
+        <form onSubmit={handleSubmit}>
+          <h4 className="title">REGISTER FORM</h4>
+          <div className="mb-3">
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter Your Name"
+              required
+              autoFocus
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter Your Email "
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="form-control"
+              id="exampleInputPassword1"
+              placeholder="Enter Your Password"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter Your Phone"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <input
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              className="form-control"
+              id="exampleInputEmail1"
+              placeholder="Enter Your Address"
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            REGISTER
+          </button>
+        </form>
+      </div>
+    </Layout>
+  );
+};
+
+export default Register;
+
+
+
+
+
+//about.js
+
+
+import React from "react";
+import Layout from "./../components/layout/layout.js";
+
+const About = () => {
+  return (
+    <Layout>
+      <div className="row contactus ">
+        <div className="col-md-6 ">
+          <img
+            src="/images/about.jpeg"
+            alt="contactus"
+            style={{ width: "100%" }}
+          />
+        </div>
+        <div className="col-md-4">
+          <p className="text-justify mt-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+            officiis obcaecati esse tempore unde ratione, eveniet mollitia,
+            perferendis eius temporibus dicta blanditiis doloremque explicabo
+            quasi sunt vero optio cum aperiam vel consectetur! Laborum enim
+            accusantium atque, excepturi sapiente amet! Tenetur ducimus aut
+            commodi illum quidem neque tempora nam.
+          </p>
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default About;
+
+//contact.JS
+
+import React from "react";
+import Layout from "./../components/layout/layout.js";
+
+const About = () => {
+  return (
+    <Layout>
+      <div className="row contactus ">
+        <div className="col-md-6 ">
+          <img
+            src="/images/about.jpeg"
+            alt="contactus"
+            style={{ width: "100%" }}
+          />
+        </div>
+        <div className="col-md-4">
+          <p className="text-justify mt-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+            officiis obcaecati esse tempore unde ratione, eveniet mollitia,
+            perferendis eius temporibus dicta blanditiis doloremque explicabo
+            quasi sunt vero optio cum aperiam vel consectetur! Laborum enim
+            accusantium atque, excepturi sapiente amet! Tenetur ducimus aut
+            commodi illum quidem neque tempora nam.
+          </p>
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default About;
+
+
+//HomePage.JS
+
+
+import React from "react";
+import Layout from "./../components/layout/layout.js";
+
+const HomePage = () => {
+  return (
+    <Layout>
+      <h1>HomePage</h1>
+    </Layout>
+  );
+};
+
+export default HomePage;
+
+//PageNotFound.JS
+
+import React from "react";
+import { Link } from "react-router-dom";
+import Layout from "./../components/layout/layout.js";
+
+const Pagenotfound = () => {
+  return (
+    <Layout>
+      <div className="pnf">
+        <h1 className="pnf-title">404</h1>
+        <h2 className="pnf-heading">Oops ! Page Not Found</h2>
+        <Link to="/" className="pnf-btn">
+          Go Back
+        </Link>
+      </div>
+    </Layout>
+  );
+};
+
+export default Pagenotfound;
+
+
+//Policy.JS
+import React from "react";
+import Layout from "./../components/layout/layout.js";
+
+const Policy = () => {
+  return (
+    <Layout>
+      <div className="row contactus ">
+        <div className="col-md-6 ">
+          <img
+            src="/images/contactus.jpeg"
+            alt="contactus"
+            style={{ width: "100%" }}
+          />
+        </div>
+        <div className="col-md-4">
+          <p>add privacy policy</p>
+          <p>add privacy policy</p>
+          <p>add privacy policy</p>
+          <p>add privacy policy</p>
+          <p>add privacy policy</p>
+          <p>add privacy policy</p>
+          <p>add privacy policy</p>
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+export default Policy;
+
+
